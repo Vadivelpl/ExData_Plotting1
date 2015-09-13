@@ -6,8 +6,8 @@ inp$Global_active_power <- as.numeric(inp$Global_active_power)
 inp$Global_active_power <- inp$Global_active_power/1000 #converting watts to kilowatts
 #filtering for 2 days in feb 2007
 febdata <- subset(inp, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"))
+febdata$DateTime <- as.POSIXct(paste(febdata$Date,as.character(febdata$Time)))
 
-pdf(file="plot1.pdf")
-hist(febdata$Global_active_power,breaks=6,main="Global Active Power",xlab="Global Active Power (Kilowatts)",col="red")
-title(main="Global Active Power")
+pdf(file="plot2.pdf")
+plot(febdata$DateTime,febdata$Global_active_power,type="l",ylab="Global Active Power (Kilowatts)")
 dev.off()
