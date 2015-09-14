@@ -10,7 +10,6 @@ inp$Global_reactive_power <- inp$Global_reactive_power/1000 #converting watts to
 febdata <- subset(inp, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"))
 febdata$DateTime <- as.POSIXct(paste(febdata$Date,as.character(febdata$Time)))
 
-pdf(file="plot4.pdf")
 par(mfrow=c(2,2),mar=c(2,4,1,1))
 plot(febdata$DateTime,febdata$Global_active_power,type="l",ylab="Global Active Power")
 plot(febdata$DateTime,febdata$Voltage,type="l",ylab="Voltage")
@@ -19,4 +18,5 @@ lines(febdata$DateTime,febdata$Sub_metering_2,type="l",ylab="Global Active Power
 lines(febdata$DateTime,febdata$Sub_metering_3,type="l",ylab="Global Active Power (Kilowatts)",col="blue")
 legend("topright",lty=c(1,1,1),col=c("black","red","blue"),legend=c("sub_metering_1","sub_metering_2","sub_metering_3"))
 plot(febdata$DateTime,febdata$Global_reactive_power,type="l",ylab="Global Reactive Power")
+dev.copy(png, file = "plot4.png")
 dev.off()

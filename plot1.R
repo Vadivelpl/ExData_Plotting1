@@ -7,7 +7,8 @@ inp$Global_active_power <- inp$Global_active_power/1000 #converting watts to kil
 #filtering for 2 days in feb 2007
 febdata <- subset(inp, Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"))
 
-pdf(file="plot1.pdf")
+
 hist(febdata$Global_active_power,breaks=6,main="Global Active Power",xlab="Global Active Power (Kilowatts)",col="red")
 title(main="Global Active Power")
+dev.copy(png, file = "plot1.png")
 dev.off()
